@@ -1,47 +1,24 @@
-/*
-Write a program find whether a given number is a prime number.
-int input_number();
-int is_prime(int n);
-void output(int n, int is_prime);
-*/
-
-#include <stdio.h>
-#include <math.h>
-int input()
-{
-  int n;
-  printf("Enter the number\n");
-  scanf("%d",&n);
-  return n;
+#include<stdio.h>
+void input(int *n,int *r){
+    printf("Enter the values of 'n' and 'r'\n");
+    scanf("%d %d",n,r);
 }
 
-int is_prime(int n)
-{
-  if (n==0 || n==1) {
+int ncr(int n,int r){
+    int result=1;
+    for(int i=1;i<=r;i++){
+      result=result*(n-i+1)/i;
+    }
+
+    return result;
+}
+void output(int n,int r,int result){
+    printf("The nCr value of %d %d is %d",n,r,result);
+}
+int main(){
+    int n,r,result;
+    input(&n,&r);
+    result=ncr(n,r);
+    output(n,r,result);
     return 0;
-  }
-  if (n==2) {
-    return 1;
-  }
-  for(int i= 2; i<= sqrt(n);i++)
-  {
-    if(n%i==0)
-      return 0;
-  }
-  return 1;
 }
-void output(int n, int is_prime)
-{
-  if(is_prime == 0)
-    printf("%d is not a prime number\n",n);
-  else
-    printf("%d is a prime number\n",n);
-}
-
-int main()
-{
-  int n = input();
-  int isp = is_prime(n);
-  output(n,isp);
-  return 0;
-  }
